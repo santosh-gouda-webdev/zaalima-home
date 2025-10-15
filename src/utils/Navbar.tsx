@@ -61,12 +61,8 @@ export function NavbarZaalima({children}: {children?: React.ReactNode}) {
             onItemClick={closeMobileMenu} // Close menu when item clicked
           />
           <div className="flex items-center gap-4">
-            <Link to="/careers">
-              <NavbarButton variant="secondary">Careers</NavbarButton>
-            </Link>
-            <Link to="/get-a-quote">
-              <NavbarButton variant="primary">Get Started</NavbarButton>
-            </Link>
+            <NavbarButton as={Link} to="/careers" variant="secondary">Careers</NavbarButton>
+            <NavbarButton as={Link} to="/get-a-quote" variant="primary">Get Started</NavbarButton>
           </div>
         </NavBody>
 
@@ -95,16 +91,24 @@ export function NavbarZaalima({children}: {children?: React.ReactNode}) {
               </Link>
             ))}
             <div className="flex w-full flex-col gap-3 mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-700">
-              <Link to="/careers" onClick={closeMobileMenu} className="w-full">
-                <NavbarButton variant="secondary" className="w-full justify-center">
-                  Careers
-                </NavbarButton>
-              </Link>
-              <Link to="/get-a-quote" onClick={closeMobileMenu} className="w-full">
-                <NavbarButton variant="primary" className="w-full justify-center">
-                  Get Started
-                </NavbarButton>
-              </Link>
+              <NavbarButton 
+                as={Link} 
+                to="/careers" 
+                onClick={closeMobileMenu} 
+                variant="secondary" 
+                className="w-full justify-center"
+              >
+                Careers
+              </NavbarButton>
+              <NavbarButton 
+                as={Link} 
+                to="/get-a-quote" 
+                onClick={closeMobileMenu} 
+                variant="primary" 
+                className="w-full justify-center"
+              >
+                Get Started
+              </NavbarButton>
             </div>
           </MobileNavMenu>
         </MobileNav>

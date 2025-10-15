@@ -18,9 +18,5 @@ export default defineConfig({
       clientPort: 443,
       protocol: "wss",
     },
-    // 👇 Add this section
-    allowedHosts: [
-      "8ba1b5a4-1c41-4f7d-8829-3b0d5c27d08c-00-1ie15zdiyz15f.pike.replit.dev"
-    ],
   },
 })
