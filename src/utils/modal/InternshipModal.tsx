@@ -76,9 +76,8 @@ export function InternshipModal({ isOpen, onClose }: InternshipModalProps) {
           <X className="w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform" />
         </button>
 
-        {/* Scrollable Content */}
-        <div className="overflow-y-auto max-h-[90vh]">
-          <div className="grid grid-cols-1 lg:grid-cols-2">
+        {/* Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 max-h-[90vh] overflow-y-auto">
             {/* Left Side - Hero Section */}
             <div className="relative p-6 sm:p-8 lg:p-12 flex flex-col justify-center text-white">
               {/* Floating Badge */}
@@ -222,7 +221,6 @@ export function InternshipModal({ isOpen, onClose }: InternshipModalProps) {
                 🔒 Limited spots • First come, first served
               </p>
             </div>
-          </div>
         </div>
       </div>
     </div>
