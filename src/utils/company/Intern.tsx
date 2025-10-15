@@ -527,34 +527,34 @@ const InternHallOfFame: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-6 bg-gray-900 text-white">
+      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gray-900 text-white">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Join Our Next Cohort</h2>
-          <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">Join Our Next Cohort</h2>
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-10 md:mb-12 max-w-2xl mx-auto px-4">
             Be part of our Hall of Fame. Applications are now open for Summer 2025 internship program.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
-            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 px-8 py-4 text-lg">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-8 sm:mb-10 md:mb-12 px-4">
+            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg w-full sm:w-auto">
               Apply Now
-              <ArrowRight className="ml-2 w-5 h-5" />
+              <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
             </Button>
-            <Link to="/contact">
-            <Button variant="outline" size="lg" className="border-gray-600 text-black hover:bg-gray-800 px-8 py-4 text-lg">
+            <Link to="/contact" className="w-full sm:w-auto">
+            <Button variant="outline" size="lg" className="border-gray-600 text-white hover:text-black hover:bg-gray-200 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg w-full">
               Learn More
             </Button>
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-gray-800">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 pt-6 sm:pt-8 border-t border-gray-800 px-4">
             {[
               { title: "Application Deadline", value: "March 15, 2025" },
               { title: "Program Duration", value: "12-16 Weeks" },
               { title: "Stipend", value: "$2K - $8K/month" }
             ].map((item, index) => (
               <div key={index} className="text-center">
-                <div className="text-sm text-gray-400 mb-2">{item.title}</div>
-                <div className="text-lg font-semibold">{item.value}</div>
+                <div className="text-xs sm:text-sm text-gray-400 mb-1 sm:mb-2">{item.title}</div>
+                <div className="text-base sm:text-lg font-semibold">{item.value}</div>
               </div>
             ))}
           </div>
