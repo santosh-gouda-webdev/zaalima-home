@@ -9,7 +9,7 @@ interface InternshipModalProps {
 }
 
 export function InternshipModal({ isOpen, onClose }: InternshipModalProps) {
-  const handleClose = useCallback((e?: any) => {
+  const handleClose = useCallback((e?: React.MouseEvent) => {
     if (e) {
       e.preventDefault()
       e.stopPropagation()
@@ -17,14 +17,14 @@ export function InternshipModal({ isOpen, onClose }: InternshipModalProps) {
     onClose()
   }, [onClose])
 
-  const handleApplyNow = useCallback((e: any) => {
+  const handleApplyNow = useCallback((e: React.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
     window.open('https://forms.gle/Q1znrmk5bmnvasWG9', '_blank')
     onClose()
   }, [onClose])
 
-  const handleBackdropClick = useCallback((e: any) => {
+  const handleBackdropClick = useCallback((e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
       handleClose()
     }
@@ -57,23 +57,23 @@ export function InternshipModal({ isOpen, onClose }: InternshipModalProps) {
       onClick={handleBackdropClick}
     >
       <div 
-        className="relative w-full max-w-6xl h-auto bg-white dark:bg-gray-900 rounded-3xl shadow-2xl animate-in zoom-in-95 duration-300"
+        className="relative w-full max-w-6xl bg-white dark:bg-gray-900 rounded-3xl shadow-2xl animate-in zoom-in-95 duration-300 flex flex-col max-h-[90vh] sm:max-h-[95vh]"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Prominent Close Button - Outside scroll area */}
+        {/* Prominent Close Button - Fixed position, always visible */}
         <button
           onClick={handleClose}
-          className="absolute top-4 right-4 sm:top-6 sm:right-6 z-[100] w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 shadow-lg hover:shadow-xl flex items-center justify-center text-white transition-all duration-300 hover:scale-110 group"
+          className="absolute top-4 right-4 sm:top-6 sm:right-6 z-[200] w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 shadow-lg hover:shadow-xl flex items-center justify-center text-white transition-all duration-300 hover:scale-110 group"
           aria-label="Close"
           type="button"
         >
           <X className="w-6 h-6 sm:w-7 sm:h-7 group-hover:rotate-90 transition-transform duration-300" />
         </button>
 
-        {/* Content Container - Scrollable on mobile */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 overflow-y-auto max-h-[95vh] rounded-3xl">
+        {/* Content Container - Scrollable */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 overflow-y-auto overflow-x-hidden rounded-3xl scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 dark:scrollbar-thumb-gray-600 dark:scrollbar-track-gray-800">
           {/* Left Side - Hero */}
-          <div className="relative bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 p-8 sm:p-12 flex flex-col justify-center text-white overflow-hidden">
+          <div className="relative bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 p-8 sm:p-12 flex flex-col justify-center text-white overflow-hidden min-h-[400px]">
             {/* Animated Background Shapes */}
             <div className="absolute inset-0 overflow-hidden opacity-20">
               <div className="absolute -top-10 -left-10 w-40 h-40 sm:w-72 sm:h-72 bg-white rounded-full blur-3xl animate-pulse"></div>
@@ -134,7 +134,7 @@ export function InternshipModal({ isOpen, onClose }: InternshipModalProps) {
           </div>
 
           {/* Right Side - Form */}
-          <div className="bg-white dark:bg-gray-900 p-8 sm:p-12 flex flex-col justify-center">
+          <div className="bg-white dark:bg-gray-900 p-8 sm:p-12 flex flex-col justify-center min-h-[400px]">
             <div className="inline-flex items-center gap-2 bg-indigo-50 dark:bg-indigo-950 rounded-full px-4 py-2 mb-6 w-fit">
               <Briefcase className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
               <span className="text-sm font-semibold text-indigo-900 dark:text-indigo-200">Apply Now</span>
