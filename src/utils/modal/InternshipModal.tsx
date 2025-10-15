@@ -57,13 +57,13 @@ export function InternshipModal({ isOpen, onClose }: InternshipModalProps) {
       onClick={handleBackdropClick}
     >
       <div 
-        className="relative w-full max-w-6xl h-auto max-h-[95vh] bg-white dark:bg-gray-900 rounded-3xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300"
+        className="relative w-full max-w-6xl h-auto bg-white dark:bg-gray-900 rounded-3xl shadow-2xl animate-in zoom-in-95 duration-300"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Prominent Close Button */}
+        {/* Prominent Close Button - Outside scroll area */}
         <button
           onClick={handleClose}
-          className="absolute top-4 right-4 sm:top-6 sm:right-6 z-50 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 shadow-lg hover:shadow-xl flex items-center justify-center text-white transition-all duration-300 hover:scale-110 group"
+          className="absolute top-4 right-4 sm:top-6 sm:right-6 z-[100] w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 shadow-lg hover:shadow-xl flex items-center justify-center text-white transition-all duration-300 hover:scale-110 group"
           aria-label="Close"
           type="button"
         >
@@ -71,7 +71,7 @@ export function InternshipModal({ isOpen, onClose }: InternshipModalProps) {
         </button>
 
         {/* Content Container - Scrollable on mobile */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 overflow-y-auto max-h-[95vh]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 overflow-y-auto max-h-[95vh] rounded-3xl">
           {/* Left Side - Hero */}
           <div className="relative bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 p-8 sm:p-12 flex flex-col justify-center text-white overflow-hidden">
             {/* Animated Background Shapes */}
