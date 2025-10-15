@@ -286,52 +286,52 @@ const InternHallOfFame: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {interns.map((intern) => {
               const IconComponent = intern.icon
               return (
-                <Card key={intern.id} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md">
+                <Card key={intern.id} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md overflow-hidden">
                   <CardContent className="p-0">
                     {/* Profile Image */}
-                    <div className="relative h-64 bg-gradient-to-br from-blue-50 to-indigo-100 overflow-hidden">
+                    <div className="relative h-48 sm:h-56 md:h-64 bg-gradient-to-br from-blue-50 to-indigo-100 overflow-hidden">
                       <img
                         src={intern.image}
                         alt={intern.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
                       />
-                      <div className="absolute top-4 left-4">
-                        <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg">
-                          <IconComponent className="w-5 h-5 text-gray-700" />
+                      <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-full flex items-center justify-center shadow-lg">
+                          <IconComponent className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" />
                         </div>
                       </div>
-                      <div className="absolute top-4 right-4">
-                        <Badge className="bg-white text-gray-800 shadow-sm">
+                      <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
+                        <Badge className="bg-white text-gray-800 shadow-sm text-xs">
                           {intern.batch}
                         </Badge>
                       </div>
                     </div>
 
                     {/* Content */}
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-gray-900 mb-1">{intern.name}</h3>
-                      <p className="text-blue-600 font-medium mb-3">{intern.domain}</p>
+                    <div className="p-4 sm:p-6">
+                      <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1">{intern.name}</h3>
+                      <p className="text-blue-600 font-medium mb-2 sm:mb-3 text-sm sm:text-base">{intern.domain}</p>
                       
-                      <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+                      <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed">
                         {intern.description}
                       </p>
 
                       {/* Achievement Badge */}
-                      <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4">
+                      <div className="bg-green-50 border border-green-200 rounded-lg p-2 sm:p-3 mb-3 sm:mb-4">
                         <div className="flex items-center">
-                          <Trophy className="w-4 h-4 text-green-600 mr-2" />
-                          <span className="text-sm font-medium text-green-800">
+                          <Trophy className="w-3 h-3 sm:w-4 sm:h-4 text-green-600 mr-2 flex-shrink-0" />
+                          <span className="text-xs sm:text-sm font-medium text-green-800">
                             {intern.achievement}
                           </span>
                         </div>
                       </div>
 
                       {/* Stats */}
-                      <div className="flex justify-between items-center mb-4 text-sm">
+                      <div className="flex flex-wrap justify-between items-center mb-3 sm:mb-4 text-xs sm:text-sm gap-2">
                         <div>
                           <span className="font-semibold text-gray-900">{intern.projects}</span>
                           <span className="text-gray-500 ml-1">Projects</span>
@@ -339,8 +339,8 @@ const InternHallOfFame: React.FC = () => {
                         <div>
                           <span className="font-semibold text-gray-900">{intern.duration}</span>
                         </div>
-                        <div>
-                          <span className="text-gray-500">{intern.location}</span>
+                        <div className="w-full sm:w-auto">
+                          <span className="text-gray-500 text-xs">{intern.location}</span>
                         </div>
                       </div>
 
