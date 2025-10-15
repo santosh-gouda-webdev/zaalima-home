@@ -8,6 +8,12 @@ This is the official website for Zaalima Development, an IT services and product
 **Current State**: Production-ready, imported from GitHub
 
 ## Recent Changes
+- **October 15, 2025**: Fixed UI/UX issues for better mobile responsiveness
+  - Fixed InternshipModal scrollbar issue by consolidating scroll containers
+  - Improved modal mobile responsiveness with proper spacing and sizing
+  - Fixed Outstanding Achievers section on Interns page with responsive image heights
+  - Fixed CTA section buttons cutting off on mobile with full-width layout
+  - Added comprehensive mobile breakpoints (sm/md/lg) throughout components
 - **October 15, 2025**: Imported project from GitHub and configured for Replit environment
   - Configured Vite to run on port 5000 with host 0.0.0.0
   - Set up HMR for Replit's proxy environment (WSS on port 443)
