@@ -308,69 +308,75 @@ const InternHallOfFame: React.FC = () => {
           </div>
 
           {/* Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {interns.map((intern) => {
               const IconComponent = intern.icon
               return (
-                <Card key={intern.id} className="group bg-white dark:bg-gray-800 border-0 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
-                  <CardContent className="p-0">
-                    {/* Image with Gradient Overlay */}
-                    <div className="relative h-56 sm:h-64 overflow-hidden bg-gradient-to-br from-indigo-500 to-purple-600">
-                      <img
-                        src={intern.image}
-                        alt={intern.name}
-                        className="w-full h-full object-cover object-top opacity-90 group-hover:scale-110 group-hover:opacity-100 transition-all duration-500"
-                      />
-                      {/* Icon Badge */}
-                      <div className="absolute top-4 left-4 w-12 h-12 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg">
-                        <IconComponent className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
+                <Card key={intern.id} className="group bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 border-0 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
+                  <CardContent className="p-6">
+                    {/* Profile Image - Circular */}
+                    <div className="relative mb-4">
+                      <div className="w-full aspect-square rounded-3xl overflow-hidden bg-gradient-to-br from-indigo-400 to-purple-500 p-1">
+                        <div className="w-full h-full rounded-3xl overflow-hidden bg-white dark:bg-gray-800">
+                          <img
+                            src={intern.image}
+                            alt={intern.name}
+                            className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
                       </div>
-                      {/* Batch Badge */}
-                      <div className="absolute top-4 right-4">
-                        <Badge className="bg-white/90 dark:bg-gray-900/90 text-gray-900 dark:text-white backdrop-blur-sm shadow-lg border-0">
-                          {intern.batch}
+                      
+                      {/* Domain Badge - Bottom Left */}
+                      <div className="absolute bottom-3 left-3">
+                        <Badge className="bg-indigo-600 hover:bg-indigo-700 text-white border-0 px-3 py-1 text-xs font-semibold shadow-lg">
+                          <IconComponent className="w-3 h-3 mr-1 inline" />
+                          {intern.domain}
                         </Badge>
                       </div>
-                      {/* Gradient Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     </div>
 
-                    {/* Content */}
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{intern.name}</h3>
-                      <p className="text-indigo-600 dark:text-indigo-400 font-semibold mb-3 text-sm">{intern.domain}</p>
-                      
-                      <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed line-clamp-2">
-                        {intern.description}
-                      </p>
+                    {/* Name */}
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{intern.name}</h3>
+                    
+                    {/* Description */}
+                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-3 leading-relaxed line-clamp-2">
+                      {intern.description}
+                    </p>
 
-                      {/* Achievement */}
-                      <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 border border-green-200 dark:border-green-800 rounded-xl p-3 mb-4">
-                        <div className="flex items-center gap-2">
-                          <Trophy className="w-4 h-4 text-green-600 dark:text-green-400 flex-shrink-0" />
-                          <span className="text-sm font-medium text-green-900 dark:text-green-200">
-                            {intern.achievement}
-                          </span>
-                        </div>
+                    {/* Achievement Badge */}
+                    <div className="bg-green-50 dark:bg-green-950/50 border border-green-200 dark:border-green-800 rounded-lg p-2 mb-3">
+                      <div className="flex items-center gap-2">
+                        <Trophy className="w-3 h-3 text-green-600 dark:text-green-400 flex-shrink-0" />
+                        <span className="text-xs font-medium text-green-900 dark:text-green-200 line-clamp-1">
+                          {intern.achievement}
+                        </span>
                       </div>
+                    </div>
 
-                      {/* Stats */}
-                      <div className="flex items-center justify-between text-sm mb-4 pb-4 border-b border-gray-200 dark:border-gray-700">
-                        <div className="flex items-center gap-2">
-                          <Briefcase className="w-4 h-4 text-gray-400" />
-                          <span className="font-semibold text-gray-900 dark:text-white">{intern.projects}</span>
-                          <span className="text-gray-500 dark:text-gray-400">Projects</span>
-                        </div>
-                        <div className="text-gray-500 dark:text-gray-400">{intern.duration}</div>
+                    {/* Stats Row */}
+                    <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 mb-3">
+                      <div className="flex items-center gap-1">
+                        <Briefcase className="w-3 h-3" />
+                        <span className="font-semibold text-gray-900 dark:text-white">{intern.projects}</span>
+                        <span>Projects</span>
                       </div>
+                      <div>{intern.duration}</div>
+                    </div>
 
-                      {/* Technologies */}
-                      <div className="flex flex-wrap gap-2">
-                        {intern.technologies.map((tech, index) => (
-                          <span key={index} className="px-3 py-1 bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 rounded-full text-xs font-medium border border-indigo-200 dark:border-indigo-800">
-                            {tech}
-                          </span>
-                        ))}
+                    {/* Technologies */}
+                    <div className="flex flex-wrap gap-1">
+                      {intern.technologies.slice(0, 3).map((tech, index) => (
+                        <span key={index} className="px-2 py-0.5 bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 rounded-md text-xs font-medium">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Date Badge */}
+                    <div className="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
+                      <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+                        <span>📅 {intern.batch}</span>
+                        <span>📍 {intern.location.split(',')[0]}</span>
                       </div>
                     </div>
                   </CardContent>
