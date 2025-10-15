@@ -70,8 +70,8 @@ export function InternshipModal({ isOpen, onClose }: InternshipModalProps) {
           <X className="w-6 h-6 sm:w-7 sm:h-7 group-hover:rotate-90 transition-transform duration-300" />
         </button>
 
-        {/* Content Container - No Scroll */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 h-full">
+        {/* Content Container - Scrollable on mobile */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 overflow-y-auto max-h-[95vh]">
           {/* Left Side - Hero */}
           <div className="relative bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 p-8 sm:p-12 flex flex-col justify-center text-white overflow-hidden">
             {/* Animated Background Shapes */}

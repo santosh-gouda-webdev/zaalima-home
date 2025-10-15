@@ -21,6 +21,10 @@ import {
   VolumeX,
   Trophy,
   Target,
+  Award,
+  Briefcase,
+  Zap,
+  Rocket,
 } from "lucide-react"
 import { Link } from "react-router"
 import { HeroScrollDemo2 } from "../carosel/HeroScroll2"
@@ -242,6 +246,7 @@ const InternHallOfFame: React.FC = () => {
   const [currentVideo, setCurrentVideo] = useState<number>(0)
   const [isPlaying, setIsPlaying] = useState<boolean>(false)
   const [isMuted, setIsMuted] = useState<boolean>(true)
+  const videoRef = React.useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -249,6 +254,16 @@ const InternHallOfFame: React.FC = () => {
     }, 5000)
     return () => clearInterval(timer)
   }, [])
+
+  useEffect(() => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.play()
+      } else {
+        videoRef.current.pause()
+      }
+    }
+  }, [isPlaying])
 
   const nextReview = (): void => {
     setCurrentReview((prev) => (prev + 1) % reviews.length)
@@ -269,85 +284,90 @@ const InternHallOfFame: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
       {/* Hero Section */}
-      
       <div>
         <HeroScrollDemo2 />
       </div>
 
-      {/* Featured Interns */}
-      <section className="py-16 px-6">
+      {/* Outstanding Achievers */}
+      <section className="py-16 sm:py-20 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Outstanding Achievers</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-12 sm:mb-16">
+            <div className="inline-flex items-center gap-2 bg-indigo-100 dark:bg-indigo-900 rounded-full px-4 py-2 mb-4">
+              <Award className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+              <span className="text-sm font-semibold text-indigo-900 dark:text-indigo-200">Hall of Fame</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+              Outstanding Achievers
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               Meet the exceptional individuals who have demonstrated excellence, innovation, and leadership during their internships.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {interns.map((intern) => {
               const IconComponent = intern.icon
               return (
-                <Card key={intern.id} className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md overflow-hidden">
+                <Card key={intern.id} className="group bg-white dark:bg-gray-800 border-0 shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden">
                   <CardContent className="p-0">
-                    {/* Profile Image */}
-                    <div className="relative h-48 sm:h-56 md:h-64 bg-gradient-to-br from-blue-50 to-indigo-100 overflow-hidden">
+                    {/* Image with Gradient Overlay */}
+                    <div className="relative h-56 sm:h-64 overflow-hidden bg-gradient-to-br from-indigo-500 to-purple-600">
                       <img
                         src={intern.image}
                         alt={intern.name}
-                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                        className="w-full h-full object-cover object-top opacity-90 group-hover:scale-110 group-hover:opacity-100 transition-all duration-500"
                       />
-                      <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
-                        <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-full flex items-center justify-center shadow-lg">
-                          <IconComponent className="w-4 h-4 sm:w-5 sm:h-5 text-gray-700" />
-                        </div>
+                      {/* Icon Badge */}
+                      <div className="absolute top-4 left-4 w-12 h-12 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg">
+                        <IconComponent className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
                       </div>
-                      <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
-                        <Badge className="bg-white text-gray-800 shadow-sm text-xs">
+                      {/* Batch Badge */}
+                      <div className="absolute top-4 right-4">
+                        <Badge className="bg-white/90 dark:bg-gray-900/90 text-gray-900 dark:text-white backdrop-blur-sm shadow-lg border-0">
                           {intern.batch}
                         </Badge>
                       </div>
+                      {/* Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     </div>
 
                     {/* Content */}
-                    <div className="p-4 sm:p-6">
-                      <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1">{intern.name}</h3>
-                      <p className="text-blue-600 font-medium mb-2 sm:mb-3 text-sm sm:text-base">{intern.domain}</p>
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{intern.name}</h3>
+                      <p className="text-indigo-600 dark:text-indigo-400 font-semibold mb-3 text-sm">{intern.domain}</p>
                       
-                      <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed">
+                      <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed line-clamp-2">
                         {intern.description}
                       </p>
 
-                      {/* Achievement Badge */}
-                      <div className="bg-green-50 border border-green-200 rounded-lg p-2 sm:p-3 mb-3 sm:mb-4">
-                        <div className="flex items-center">
-                          <Trophy className="w-3 h-3 sm:w-4 sm:h-4 text-green-600 mr-2 flex-shrink-0" />
-                          <span className="text-xs sm:text-sm font-medium text-green-800">
+                      {/* Achievement */}
+                      <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 border border-green-200 dark:border-green-800 rounded-xl p-3 mb-4">
+                        <div className="flex items-center gap-2">
+                          <Trophy className="w-4 h-4 text-green-600 dark:text-green-400 flex-shrink-0" />
+                          <span className="text-sm font-medium text-green-900 dark:text-green-200">
                             {intern.achievement}
                           </span>
                         </div>
                       </div>
 
                       {/* Stats */}
-                      <div className="flex flex-wrap justify-between items-center mb-3 sm:mb-4 text-xs sm:text-sm gap-2">
-                        <div>
-                          <span className="font-semibold text-gray-900">{intern.projects}</span>
-                          <span className="text-gray-500 ml-1">Projects</span>
+                      <div className="flex items-center justify-between text-sm mb-4 pb-4 border-b border-gray-200 dark:border-gray-700">
+                        <div className="flex items-center gap-2">
+                          <Briefcase className="w-4 h-4 text-gray-400" />
+                          <span className="font-semibold text-gray-900 dark:text-white">{intern.projects}</span>
+                          <span className="text-gray-500 dark:text-gray-400">Projects</span>
                         </div>
-                        <div>
-                          <span className="font-semibold text-gray-900">{intern.duration}</span>
-                        </div>
-                        <div className="w-full sm:w-auto">
-                          <span className="text-gray-500 text-xs">{intern.location}</span>
-                        </div>
+                        <div className="text-gray-500 dark:text-gray-400">{intern.duration}</div>
                       </div>
 
                       {/* Technologies */}
                       <div className="flex flex-wrap gap-2">
                         {intern.technologies.map((tech, index) => (
-                          <span key={index} className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs font-medium">
+                          <span key={index} className="px-3 py-1 bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 rounded-full text-xs font-medium border border-indigo-200 dark:border-indigo-800">
                             {tech}
                           </span>
                         ))}
@@ -362,24 +382,25 @@ const InternHallOfFame: React.FC = () => {
       </section>
 
       {/* Success Stories Videos */}
-      <section className="py-20 px-6 bg-gray-50">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 bg-white dark:bg-gray-900">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 bg-white rounded-full text-sm text-gray-700 mb-6">
-              <Play className="w-4 h-4 mr-2" />
-              Success Stories
+          <div className="text-center mb-12 sm:mb-16">
+            <div className="inline-flex items-center px-4 py-2 bg-indigo-100 dark:bg-indigo-900 rounded-full text-sm mb-6">
+              <Play className="w-4 h-4 mr-2 text-indigo-600 dark:text-indigo-400" />
+              <span className="font-semibold text-indigo-900 dark:text-indigo-200">Success Stories</span>
             </div>
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Hear Their Journey</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">Hear Their Journey</h2>
+            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               Watch our interns share their transformative experiences and the impact they've made.
             </p>
           </div>
 
           <div className="relative">
             {/* Main Video */}
-            <div className="bg-white rounded-2xl overflow-hidden shadow-lg">
+            <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl overflow-hidden shadow-2xl">
               <div className="aspect-video bg-gray-900 relative">
                 <video
+                  ref={videoRef}
                   key={successVideos[currentVideo].videoUrl}
                   className="w-full h-full object-cover"
                   poster={successVideos[currentVideo].thumbnail}
@@ -393,36 +414,36 @@ const InternHallOfFame: React.FC = () => {
                   <Button
                     size="lg"
                     onClick={() => setIsPlaying(!isPlaying)}
-                    className="w-20 h-20 rounded-full bg-white hover:bg-gray-100 text-gray-900"
+                    className="w-20 h-20 rounded-full bg-white/90 hover:bg-white text-gray-900 shadow-2xl"
                   >
                     {isPlaying ? <Pause className="w-8 h-8" /> : <Play className="w-8 h-8 ml-1" />}
                   </Button>
                 </div>
 
                 <div className="absolute top-6 right-6 flex gap-2">
-                  <span className="bg-black/50 text-white text-sm px-3 py-1 rounded-full">
+                  <span className="bg-black/60 backdrop-blur-sm text-white text-sm px-3 py-1 rounded-full">
                     {successVideos[currentVideo].duration}
                   </span>
                   <Button
                     size="sm"
                     onClick={() => setIsMuted(!isMuted)}
-                    className="w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 text-white border-0"
+                    className="w-10 h-10 rounded-full bg-black/60 backdrop-blur-sm hover:bg-black/80 text-white border-0"
                   >
                     {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
                   </Button>
                 </div>
 
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-6 sm:p-8">
                   <div className="text-white">
-                    <Badge className="bg-blue-600 mb-2">{successVideos[currentVideo].batch}</Badge>
-                    <h3 className="text-2xl font-bold mb-2">{successVideos[currentVideo].title}</h3>
-                    <p className="text-gray-200 mb-2">{successVideos[currentVideo].description}</p>
-                    <div className="flex items-center gap-2">
+                    <Badge className="bg-indigo-600 mb-3">{successVideos[currentVideo].batch}</Badge>
+                    <h3 className="text-xl sm:text-2xl font-bold mb-2">{successVideos[currentVideo].title}</h3>
+                    <p className="text-gray-200 mb-2 text-sm sm:text-base">{successVideos[currentVideo].description}</p>
+                    <div className="flex flex-wrap items-center gap-2 text-sm">
                       <span className="font-semibold">{successVideos[currentVideo].name}</span>
                       <span>•</span>
                       <span>{successVideos[currentVideo].role}</span>
                       <span>•</span>
-                      <span className="text-blue-300">{successVideos[currentVideo].company}</span>
+                      <span className="text-indigo-300">{successVideos[currentVideo].company}</span>
                     </div>
                   </div>
                 </div>
@@ -432,13 +453,13 @@ const InternHallOfFame: React.FC = () => {
             {/* Navigation */}
             <Button
               onClick={prevVideo}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-full bg-white hover:bg-gray-100 shadow-lg"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 hover:bg-white shadow-xl"
             >
               <ChevronLeft className="w-6 h-6 text-gray-700" />
             </Button>
             <Button
               onClick={nextVideo}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-full bg-white hover:bg-gray-100 shadow-lg"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 rounded-full bg-white/90 hover:bg-white shadow-xl"
             >
               <ChevronRight className="w-6 h-6 text-gray-700" />
             </Button>
@@ -449,8 +470,8 @@ const InternHallOfFame: React.FC = () => {
                 <button
                   key={index}
                   onClick={() => setCurrentVideo(index)}
-                  className={`w-3 h-3 rounded-full transition-all ${
-                    index === currentVideo ? "bg-blue-600 w-8" : "bg-gray-300"
+                  className={`h-2 rounded-full transition-all ${
+                    index === currentVideo ? "bg-indigo-600 w-8" : "bg-gray-300 dark:bg-gray-600 w-2"
                   }`}
                 />
               ))}
@@ -460,21 +481,21 @@ const InternHallOfFame: React.FC = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 px-6">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 bg-gray-100 rounded-full text-sm text-gray-700 mb-6">
-              <Quote className="w-4 h-4 mr-2" />
-              Testimonials
+          <div className="text-center mb-12 sm:mb-16">
+            <div className="inline-flex items-center px-4 py-2 bg-indigo-100 dark:bg-indigo-900 rounded-full text-sm mb-6">
+              <Quote className="w-4 h-4 mr-2 text-indigo-600 dark:text-indigo-400" />
+              <span className="font-semibold text-indigo-900 dark:text-indigo-200">Testimonials</span>
             </div>
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">In Their Own Words</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">In Their Own Words</h2>
+            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               Real experiences from interns who have been part of our transformative program.
             </p>
           </div>
 
-          <Card className="shadow-lg border-0">
-            <CardContent className="p-8 md:p-12">
+          <Card className="shadow-2xl border-0 bg-white dark:bg-gray-800">
+            <CardContent className="p-8 sm:p-12">
               <div className="text-center">
                 <div className="flex justify-center mb-6">
                   {[...Array(reviews[currentReview].rating)].map((_, i) => (
@@ -482,7 +503,7 @@ const InternHallOfFame: React.FC = () => {
                   ))}
                 </div>
 
-                <blockquote className="text-xl text-gray-700 leading-relaxed mb-8 italic font-light">
+                <blockquote className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-8 italic font-light">
                   "{reviews[currentReview].review}"
                 </blockquote>
 
@@ -490,12 +511,12 @@ const InternHallOfFame: React.FC = () => {
                   <img
                     src={reviews[currentReview].avatar}
                     alt={reviews[currentReview].name}
-                    className="w-16 h-16 rounded-full border-2 border-gray-200"
+                    className="w-16 h-16 rounded-full border-2 border-indigo-200 dark:border-indigo-800"
                   />
                   <div className="text-left">
-                    <h4 className="font-bold text-gray-900 text-lg">{reviews[currentReview].name}</h4>
-                    <p className="text-blue-600 font-medium">{reviews[currentReview].role}</p>
-                    <p className="text-gray-500 text-sm">{reviews[currentReview].batch} • {reviews[currentReview].company}</p>
+                    <h4 className="font-bold text-gray-900 dark:text-white text-lg">{reviews[currentReview].name}</h4>
+                    <p className="text-indigo-600 dark:text-indigo-400 font-medium">{reviews[currentReview].role}</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm">{reviews[currentReview].batch} • {reviews[currentReview].company}</p>
                   </div>
                 </div>
               </div>
@@ -512,8 +533,8 @@ const InternHallOfFame: React.FC = () => {
                 <button
                   key={index}
                   onClick={() => setCurrentReview(index)}
-                  className={`w-3 h-3 rounded-full transition-all ${
-                    index === currentReview ? "bg-blue-600 w-8" : "bg-gray-300"
+                  className={`h-2 rounded-full transition-all ${
+                    index === currentReview ? "bg-indigo-600 w-8" : "bg-gray-300 dark:bg-gray-600 w-2"
                   }`}
                 />
               ))}
@@ -527,36 +548,54 @@ const InternHallOfFame: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gray-900 text-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">Join Our Next Cohort</h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 sm:mb-10 md:mb-12 max-w-2xl mx-auto px-4">
-            Be part of our Hall of Fame. Applications are now open for Summer 2025 internship program.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-8 sm:mb-10 md:mb-12 px-4">
-            <Button size="lg" className="bg-blue-600 hover:bg-blue-700 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg w-full sm:w-auto">
-              Apply Now
-              <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
-            </Button>
-            <Link to="/contact" className="w-full sm:w-auto">
-            <Button variant="outline" size="lg" className="border-gray-600 text-white hover:text-black hover:bg-gray-200 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg w-full">
-              Learn More
-            </Button>
-            </Link>
-          </div>
+      <section className="py-16 sm:py-20 px-4 sm:px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-3xl p-8 sm:p-12 lg:p-16 text-white text-center relative overflow-hidden shadow-2xl">
+            {/* Background Pattern */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute -top-10 -left-10 w-40 h-40 bg-white rounded-full blur-3xl"></div>
+              <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-pink-300 rounded-full blur-3xl"></div>
+            </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 pt-6 sm:pt-8 border-t border-gray-800 px-4">
-            {[
-              { title: "Application Deadline", value: "March 15, 2025" },
-              { title: "Program Duration", value: "12-16 Weeks" },
-              { title: "Stipend", value: "$2K - $8K/month" }
-            ].map((item, index) => (
-              <div key={index} className="text-center">
-                <div className="text-xs sm:text-sm text-gray-400 mb-1 sm:mb-2">{item.title}</div>
-                <div className="text-base sm:text-lg font-semibold">{item.value}</div>
+            <div className="relative z-10">
+              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full px-4 py-2 mb-6">
+                <Rocket className="w-4 h-4" />
+                <span className="text-sm font-semibold">Limited Spots Available</span>
               </div>
-            ))}
+
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">Join Our Next Cohort</h2>
+              <p className="text-lg sm:text-xl text-white/90 mb-8 sm:mb-12 max-w-2xl mx-auto">
+                Be part of our Hall of Fame. Applications are now open for Summer 2025 internship program.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10 sm:mb-12">
+                <Button size="lg" className="bg-white text-indigo-600 hover:bg-gray-100 px-8 py-6 text-lg font-bold shadow-xl w-full sm:w-auto">
+                  Apply Now
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+                <Link to="/contact" className="w-full sm:w-auto">
+                  <Button variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white hover:text-indigo-600 px-8 py-6 text-lg font-bold w-full">
+                    Learn More
+                  </Button>
+                </Link>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 pt-8 border-t border-white/20">
+                {[
+                  { icon: Zap, title: "Application Deadline", value: "March 15, 2025" },
+                  { icon: Briefcase, title: "Program Duration", value: "12-16 Weeks" },
+                  { icon: Award, title: "Stipend", value: "$2K - $8K/month" }
+                ].map((item, index) => (
+                  <div key={index} className="text-center">
+                    <div className="inline-flex items-center justify-center w-12 h-12 bg-white/20 backdrop-blur-sm rounded-2xl mb-3">
+                      <item.icon className="w-6 h-6" />
+                    </div>
+                    <div className="text-sm text-white/80 mb-1">{item.title}</div>
+                    <div className="text-lg font-bold">{item.value}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
