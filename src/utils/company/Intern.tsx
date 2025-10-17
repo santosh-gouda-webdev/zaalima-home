@@ -9,10 +9,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Star,
-  Code,
-  Database,
-  Brain,
-  Shield,
   Quote,
   ArrowRight,
   Play,
@@ -20,7 +16,6 @@ import {
   Volume2,
   VolumeX,
   Trophy,
-  Target,
   Award,
   Briefcase,
   Zap,
@@ -67,178 +62,535 @@ interface Review {
   avatar: string
   company: string
 }
-
+export interface Intern {
+  id: number
+  name: string
+  icon: React.ComponentType<any> // expects a React component, not a string
+}
 const interns: Intern[] = [
   {
-    id: 1,
-    name: "Anirban Halder",
-    domain: "Data Science & Machine Learning",
-    description: "Built responsive e-commerce platform with modern React architecture, implementing advanced state management and payment integrations.",
-    batch: "Summer 202",
-    image: "https://zaalimalearning.com/15.jpg",
-    icon: Code,
-    achievement: "Increased conversion rate by 45%",
-    projects: 3,
-    technologies: ["React", "TypeScript", "Next.js"],
-    location: "San Francisco, CA",
-    duration: "12 weeks"
+    "id": 1,
+    "name": "Likhitha D",
+    "domain": "IoT & Robotics",
+    "description": "Developed an automated robotic arm system with IoT sensors for real-time monitoring and precision control.",
+    "batch": "Spring 2025",
+    "image": "https://certificate-verification.zaalima.in/1001.jpg",
+    "icon": Cpu,
+    "achievement": "Reduced operation error by 35%",
+    "projects": 3,
+    "technologies": ["Arduino", "Raspberry Pi", "Python"],
+    "location": "Bangalore, India",
+    "duration": "12 weeks"
   },
   {
-    id: 2,
-    name: "Michael Chen",
-    domain: "Data Science",
-    description: "Developed predictive analytics models for customer behavior analysis, creating intelligent dashboards for business insights.",
-    batch: "Summer 2024",
-    image: "/professional-business-consultant-headshot.jpg",
-    icon: Database,
-    achievement: "Improved forecast accuracy by 60%",
-    projects: 4,
-    technologies: ["Python", "TensorFlow", "SQL"],
-    location: "New York, NY",
-    duration: "16 weeks"
+    "id": 2,
+    "name": "Kavi Shah",
+    "domain": "Web Development",
+    "description": "Created a full-stack portfolio website with responsive UI and optimized performance using React and Node.js.",
+    "batch": "Winter 2024",
+    "image": "https://certificate-verification.zaalima.in/1002.jpg",
+    "icon": "Code",
+    "achievement": "Improved page load speed by 50%",
+    "projects": 2,
+    "technologies": ["React", "Node.js", "MongoDB"],
+    "location": "Mumbai, India",
+    "duration": "8 weeks"
   },
   {
-    id: 3,
-    name: "Emily Rodriguez",
-    domain: "Machine Learning",
-    description: "Created AI-powered chatbot using natural language processing, implementing advanced conversation flows and learning algorithms.",
-    batch: "Spring 2024",
-    image: "/professional-business-consultant-headshot.jpg",
-    icon: Brain,
-    achievement: "Reduced response time by 70%",
-    projects: 2,
-    technologies: ["Python", "NLP", "PyTorch"],
-    location: "Austin, TX",
-    duration: "14 weeks"
+    "id": 3,
+    "name": "MRITUNJOY MAHATO",
+    "domain": "Python Development",
+    "description": "Developed automation scripts and data visualization tools using Python and Flask framework.",
+    "batch": "Summer 2025",
+    "image": "https://certificate-verification.zaalima.in/1003.jpg",
+    "icon": "Terminal",
+    "achievement": "Automated manual reporting reducing time by 40%",
+    "projects": 3,
+    "technologies": ["Python", "Flask", "Matplotlib"],
+    "location": "Kolkata, India",
+    "duration": "10 weeks"
   },
   {
-    id: 4,
-    name: "David Kim",
-    domain: "Cybersecurity",
-    description: "Implemented comprehensive security protocols and conducted thorough penetration testing across multiple enterprise systems.",
-    batch: "Fall 2024",
-    image: "/professional-business-consultant-headshot.jpg",
-    icon: Shield,
-    achievement: "Identified 15+ vulnerabilities",
-    projects: 5,
-    technologies: ["Kali Linux", "Python", "Wireshark"],
-    location: "Seattle, WA",
-    duration: "12 weeks"
+    "id": 4,
+    "name": "Nunavath Rakesh",
+    "domain": "IoT & Robotics",
+    "description": "Designed an IoT-based weather station capable of sending live updates to a cloud dashboard.",
+    "batch": "Autumn 2025",
+    "image": "https://certificate-verification.zaalima.in/1004.jpg",
+    "icon": "Cpu",
+    "achievement": "Implemented real-time sensor data integration",
+    "projects": 3,
+    "technologies": ["C++", "MQTT", "AWS IoT"],
+    "location": "Hyderabad, India",
+    "duration": "8 weeks"
   },
   {
-    id: 5,
-    name: "Jessica Taylor",
-    domain: "Full Stack Development",
-    description: "Developed progressive web application with real-time features, focusing on performance optimization and user experience.",
-    batch: "Summer 2024",
-    image: "/professional-business-consultant-headshot.jpg",
-    icon: Code,
-    achievement: "Achieved 99.9% uptime",
-    projects: 3,
-    technologies: ["Vue.js", "Node.js", "MongoDB"],
-    location: "Denver, CO",
-    duration: "16 weeks"
+    "id": 5,
+    "name": "Sanika Ravindra Pawar",
+    "domain": "Data Analytics",
+    "description": "Performed in-depth sales data analysis using Python and Power BI to identify performance trends.",
+    "batch": "Winter 2024",
+    "image": "https://certificate-verification.zaalima.in/1005.jpg",
+    "icon": "BarChart",
+    "achievement": "Enhanced reporting accuracy by 25%",
+    "projects": 2,
+    "technologies": ["Python", "Power BI", "Excel"],
+    "location": "Pune, India",
+    "duration": "4 weeks"
   },
   {
-    id: 6,
-    name: "Alex Thompson",
-    domain: "Data Analytics",
-    description: "Built comprehensive business intelligence platform enabling data-driven decision making across multiple departments.",
-    batch: "Spring 2024",
-    image: "/professional-business-consultant-headshot.jpg",
-    icon: Target,
-    achievement: "Streamlined reporting by 50%",
-    projects: 4,
-    technologies: ["Tableau", "R", "PostgreSQL"],
-    location: "Boston, MA",
-    duration: "14 weeks"
+    "id": 6,
+    "name": "Shreya Balaji Boga",
+    "domain": "IoT & Robotics",
+    "description": "Built a smart home system integrating sensors for temperature and motion detection with mobile control.",
+    "batch": "Spring 2025",
+    "image": "https://certificate-verification.zaalima.in/1006.jpg",
+    "icon": "Cpu",
+    "achievement": "Achieved seamless device integration using MQTT",
+    "projects": 3,
+    "technologies": ["Python", "Arduino", "Blynk"],
+    "location": "Chennai, India",
+    "duration": "12 weeks"
   },
   {
-    id: 7,
-    name: "Alex Thompson",
-    domain: "Data Analytics",
-    description: "Built comprehensive business intelligence platform enabling data-driven decision making across multiple departments.",
-    batch: "Spring 2024",
-    image: "/professional-business-consultant-headshot.jpg",
-    icon: Target,
-    achievement: "Streamlined reporting by 50%",
-    projects: 4,
-    technologies: ["Tableau", "R", "PostgreSQL"],
-    location: "Boston, MA",
-    duration: "14 weeks"
-  }
-]
+    "id": 7,
+    "name": "MAHUM KAUNAIN S",
+    "domain": "Data Science & Machine Learning",
+    "description": "Developed predictive models for customer churn analysis using Python and scikit-learn.",
+    "batch": "Autumn 2025",
+    "image": "https://certificate-verification.zaalima.in/1007.jpg",
+    "icon": "Brain",
+    "achievement": "Improved prediction accuracy by 18%",
+    "projects": 4,
+    "technologies": ["Python", "pandas", "scikit-learn"],
+    "location": "Bangalore, India",
+    "duration": "12 weeks"
+  },
+  {
+    "id": 8,
+    "name": "Akash Kumar",
+    "domain": "Data Analytics",
+    "description": "Designed interactive dashboards for financial KPIs using Tableau and SQL.",
+    "batch": "Winter 2024",
+    "image": "https://certificate-verification.zaalima.in/1008.jpg",
+    "icon": "BarChart",
+    "achievement": "Delivered automated BI reports to stakeholders",
+    "projects": 2,
+    "technologies": ["SQL", "Tableau", "Excel"],
+    "location": "Patna, India",
+    "duration": "8 weeks"
+  },
+  {
+    "id": 9,
+    "name": "Bandam Navadeep Reddy",
+    "domain": "Data Science & Machine Learning",
+    "description": "Created an image classification model using TensorFlow and CNN for medical diagnostics.",
+    "batch": "Summer 2025",
+    "image": "https://certificate-verification.zaalima.in/1009.jpg",
+    "icon": "Brain",
+    "achievement": "Achieved 93% model accuracy",
+    "projects": 3,
+    "technologies": ["TensorFlow", "Keras", "NumPy"],
+    "location": "Hyderabad, India",
+    "duration": "12 weeks"
+  },
+  {
+    "id": 10,
+    "name": "Abhyuday Rastogi",
+    "domain": "Python Development",
+    "description": "Implemented a REST API for data processing using Django REST Framework.",
+    "batch": "Spring 2025",
+    "image": "https://certificate-verification.zaalima.in/1010.jpg",
+    "icon": "Terminal",
+    "achievement": "Reduced API latency by 30%",
+    "projects": 3,
+    "technologies": ["Python", "Django", "REST API"],
+    "location": "Delhi, India",
+    "duration": "8 weeks"
+  },
+  {
+    "id": 11,
+    "name": "BALAKRISHNAN R",
+    "domain": "Web Development",
+    "description": "Developed a modern blog platform with secure authentication and admin dashboard.",
+    "batch": "Autumn 2025",
+    "image": "https://certificate-verification.zaalima.in/1011.jpg",
+    "icon": "Code",
+    "achievement": "Integrated user analytics and SEO tools",
+    "projects": 2,
+    "technologies": ["React", "Firebase", "Node.js"],
+    "location": "Chennai, India",
+    "duration": "4 weeks"
+  },
+  {
+    "id": 12,
+    "name": "Sahana M N",
+    "domain": "Web Development",
+    "description": "Created an event booking system with React, Express, and MongoDB for dynamic data handling.",
+    "batch": "Winter 2024",
+    "image": "https://certificate-verification.zaalima.in/1012.jpg",
+    "icon": "Code",
+    "achievement": "Enhanced backend reliability by 40%",
+    "projects": 3,
+    "technologies": ["React", "Express", "MongoDB"],
+    "location": "Bangalore, India",
+    "duration": "8 weeks"
+  },
+  {
+    "id": 13,
+    "name": "MOHAMMED ANEEZ",
+    "domain": "Web Development",
+    "description": "Built a task management web app featuring JWT authentication and cloud deployment.",
+    "batch": "Spring 2025",
+    "image": "https://certificate-verification.zaalima.in/1013.jpg",
+    "icon": "Code",
+    "achievement": "Improved app security through token validation",
+    "projects": 3,
+    "technologies": ["Next.js", "Node.js", "MongoDB"],
+    "location": "Kerala, India",
+    "duration": "12 weeks"
+  },
+  {
+    "id": 14,
+    "name": "Azaz khan",
+    "domain": "IoT & Robotics",
+    "description": "Engineered a smart irrigation system using IoT moisture sensors and mobile alerts.",
+    "batch": "Autumn 2025",
+    "image": "https://certificate-verification.zaalima.in/1014.jpg",
+    "icon": "Cpu",
+    "achievement": "Saved 20% water usage in prototype testing",
+    "projects": 3,
+    "technologies": ["ESP32", "MQTT", "Python"],
+    "location": "Bhopal, India",
+    "duration": "8 weeks"
+  },
+  {
+    "id": 15,
+    "name": "Arya Guruprasad",
+    "domain": "Python Development",
+    "description": "Developed a student grading and analytics system using Python and SQLite.",
+    "batch": "Winter 2024",
+    "image": "https://certificate-verification.zaalima.in/1015.jpg",
+    "icon": "Terminal",
+    "achievement": "Reduced grading time by 50%",
+    "projects": 2,
+    "technologies": ["Python", "SQLite", "Tkinter"],
+    "location": "Mysore, India",
+    "duration": "4 weeks"
+  },
+  {
+    "id": 16,
+    "name": "Yashash ravi",
+    "domain": "Python Development",
+    "description": "Created data automation workflows for report generation using Pandas and Excel.",
+    "batch": "Summer 2025",
+    "image": "https://certificate-verification.zaalima.in/1016.jpg",
+    "icon": "Terminal",
+    "achievement": "Automated 90% of manual reporting",
+    "projects": 3,
+    "technologies": ["Python", "pandas", "Excel"],
+    "location": "Bangalore, India",
+    "duration": "8 weeks"
+  },
+  {
+    "id": 17,
+    "name": "Deepak Mandloi",
+    "domain": "Data Science & Machine Learning",
+    "description": "Developed a machine learning model for predicting loan defaults using logistic regression.",
+    "batch": "Spring 2025",
+    "image": "https://certificate-verification.zaalima.in/1017.jpg",
+    "icon": "Brain",
+    "achievement": "Achieved 89% prediction accuracy",
+    "projects": 3,
+    "technologies": ["Python", "NumPy", "scikit-learn"],
+    "location": "Indore, India",
+    "duration": "12 weeks"
+  },
+  {
+    "id": 18,
+    "name": "Kushwanth Rasala",
+    "domain": "Python Development",
+    "description": "Built an attendance automation system with QR code scanning and database integration.",
+    "batch": "Autumn 2025",
+    "image": "https://certificate-verification.zaalima.in/1018.jpg",
+    "icon": "Terminal",
+    "achievement": "Deployed system in pilot schools successfully",
+    "projects": 2,
+    "technologies": ["Python", "OpenCV", "SQLite"],
+    "location": "Vijayawada, India",
+    "duration": "8 weeks"
+  },
+  {
+    "id": 19,
+    "name": "Viraj Sunil Bhuvad",
+    "domain": "UI/UX Design",
+    "description": "Designed an intuitive travel booking app interface with smooth navigation and accessibility.",
+    "batch": "Winter 2024",
+    "image": "https://certificate-verification.zaalima.in/1019.jpg",
+    "icon": "Layout",
+    "achievement": "Enhanced user engagement by 30%",
+    "projects": 2,
+    "technologies": ["Figma", "Adobe XD", "Canva"],
+    "location": "Mumbai, India",
+    "duration": "4 weeks"
+  },
+  {
+    "id": 20,
+    "name": "Juanita Grace Singh",
+    "domain": "UI/UX Design",
+    "description": "Developed wireframes and prototypes for an e-learning platform focusing on user retention.",
+    "batch": "Spring 2025",
+    "image": "https://certificate-verification.zaalima.in/1020.jpg",
+    "icon": "Layout",
+    "achievement": "Improved onboarding experience by 40%",
+    "projects": 3,
+    "technologies": ["Figma", "Miro", "Notion"],
+    "location": "Chennai, India",
+    "duration": "8 weeks"
+  },
+  {
+    "id": 21,
+    "name": "Kamalnath",
+    "domain": "UI/UX Design",
+    "description": "Created an elegant mobile banking app interface prioritizing security and simplicity.",
+    "batch": "Autumn 2025",
+    "image": "https://certificate-verification.zaalima.in/1021.jpg",
+    "icon": "Layout",
+    "achievement": "Reduced user drop-off by 25%",
+    "projects": 2,
+    "technologies": ["Figma", "Sketch", "Illustrator"],
+    "location": "Madurai, India",
+    "duration": "4 weeks"
+  },
+  {
+    "id": 22,
+    "name": "David Franklin D",
+    "domain": "Web Development",
+    "description": "Built a personal portfolio and blog website with content management using Next.js.",
+    "batch": "Spring 2025",
+    "image": "https://certificate-verification.zaalima.in/1022.jpg",
+    "icon": "Code",
+    "achievement": "Improved site SEO score to 98/100",
+    "projects": 3,
+    "technologies": ["Next.js", "Tailwind CSS", "Vercel"],
+    "location": "Bangalore, India",
+    "duration": "8 weeks"
+  },
+  {
+    "id": 23,
+    "name": "Tushar Gupta",
+    "domain": "Web Development",
+    "description": "Developed an e-commerce admin dashboard with dynamic charts and inventory management.",
+    "batch": "Winter 2024",
+    "image": "https://certificate-verification.zaalima.in/1023.jpg",
+    "icon": "Code",
+    "achievement": "Reduced load time by 45%",
+    "projects": 3,
+    "technologies": ["React", "Node.js", "MySQL"],
+    "location": "Delhi, India",
+    "duration": "12 weeks"
+  },
+  {
+    "id": 24,
+    "name": "Mohit Kumar",
+    "domain": "Basic Electrical",
+    "description": "Designed and simulated electrical circuits using AutoCAD Electrical and MATLAB.",
+    "batch": "Autumn 2025",
+    "image": "https://certificate-verification.zaalima.in/1024.jpg",
+    "icon": "Zap",
+    "achievement": "Reduced power losses by 10% in test simulations",
+    "projects": 2,
+    "technologies": ["MATLAB", "AutoCAD", "Simulink"],
+    "location": "Lucknow, India",
+    "duration": "8 weeks"
+  },
+  {
+    "id": 25,
+    "name": "BABULAL MAHTO",
+    "domain": "Data Science & Machine Learning",
+    "description": "Implemented a natural language processing model for sentiment analysis on customer reviews.",
+    "batch": "Summer 2025",
+    "image": "https://certificate-verification.zaalima.in/1025.jpg",
+    "icon": "Brain",
+    "achievement": "Achieved 92% classification accuracy",
+    "projects": 3,
+    "technologies": ["Python", "NLTK", "TensorFlow"],
+    "location": "Ranchi, India",
+    "duration": "12 weeks"
+  },
+  {
+    "id": 26,
+    "name": "Priti Shashikant Suryawanshi",
+    "domain": "IoT & Robotics",
+    "description": "Developed a home security robot equipped with motion sensors and live video streaming.",
+    "batch": "Winter 2024",
+    "image": "https://certificate-verification.zaalima.in/1026.jpg",
+    "icon": "Cpu",
+    "achievement": "Integrated AI detection with 95% accuracy",
+    "projects": 4,
+    "technologies": ["Arduino", "Python", "OpenCV"],
+    "location": "Pune, India",
+    "duration": "12 weeks"
+  },{
+  "id": 27,
+  "name": "DEEPAK MOHANTY",
+  "domain": "Data Analytics",
+  "description": "Performed data cleaning, transformation, and visualization of marketing performance datasets to identify growth patterns.",
+  "batch": "Spring 2025",
+  "image": "https://certificate-verification.zaalima.in/1027.jpg",
+  "icon": "BarChart",
+  "achievement": "Reduced reporting time by 35% using automated dashboards",
+  "projects": 3,
+  "technologies": ["Python", "Power BI", "SQL"],
+  "location": "Bhubaneswar, India",
+  "duration": "8 weeks"
+},
+{
+  "id": 28,
+  "name": "Himesh Kumar Rana",
+  "domain": "Web Development",
+  "description": "Developed a dynamic event management website integrating real-time user authentication and content updates.",
+  "batch": "Autumn 2025",
+  "image": "https://certificate-verification.zaalima.in/1028.jpg",
+  "icon": "Code",
+  "achievement": "Enhanced platform scalability and user experience",
+  "projects": 3,
+  "technologies": ["React", "Express", "MongoDB"],
+  "location": "Bhubaneswar, India",
+  "duration": "12 weeks"
+}
+
+];
+
+
 
 const successVideos: SuccessVideo[] = [
   {
     id: 1,
-    name: "Anirban Halder",
-    role: "Frontend Development Intern",
-    batch: "Summer 2024",
-    company: "TechFlow Systems",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-    thumbnail: "/placeholder.svg?height=400&width=600",
-    duration: "3:24",
-    title: "From Student to Frontend Expert",
-    description: "Sarah shares her journey mastering React and building production-ready applications that serve thousands of users daily."
+    name: "Aishita",
+    role: "Data Science & ML Intern",
+    batch: "Summer 2025",
+    company: "Zaalima Development Pvt.Ltd",
+    videoUrl: "https://certificate-verification.zaalima.in/1112.mp4",
+    thumbnail: "https://certificate-verification.zaalima.in/1500.jpg",
+    duration: "1:14",
+    title: "From Data to Decisions",
+    description: "Aishita shares how she transformed raw datasets into actionable insights using Python and machine learning algorithms."
   },
   {
     id: 2,
-    name: "Michael Chen",
-    role: "Data Science Intern",
-    batch: "Summer 2024",
-    company: "DataVision Corp",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-    thumbnail: "/placeholder.svg?height=400&width=600",
-    duration: "4:15",
-    title: "Turning Data Into Business Value",
-    description: "Michael discusses building ML models that increased company revenue by 25% through predictive analytics."
+    name: "Bhavya Sharma",
+    role: "Python Development Intern",
+    batch: "Autumn 2025",
+    company: "Zaalima Development Pvt.Ltd",
+    videoUrl: "https://certificate-verification.zaalima.in/1113.mp4",
+    thumbnail: "https://certificate-verification.zaalima.in/1500.jpg",
+    duration: "2:15",
+    title: "Automating the Future with Python",
+    description: "Bhavya explains how she built automation scripts that streamlined backend operations and improved data efficiency."
   },
   {
     id: 3,
-    name: "Emily Rodriguez",
-    role: "ML Engineering Intern",
-    batch: "Spring 2024",
-    company: "AI Solutions Inc",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-    thumbnail: "/placeholder.svg?height=400&width=600",
-    duration: "2:58",
-    title: "Building Intelligent Systems",
-    description: "Emily explains how she developed an AI chatbot that handles 10,000+ customer interactions daily."
-  }
+    name: "Kavi Shah",
+    role: "Web Development Intern",
+    batch: "Spring 2025",
+    company: "Zaalima Development Pvt.Ltd",
+    videoUrl: "https://certificate-verification.zaalima.in/1114.mp4",
+    thumbnail: "https://certificate-verification.zaalima.in/1500.jpg",
+    duration: "1:18",
+    title: "From Static to Dynamic Web",
+    description: "Kavi talks about creating responsive and scalable websites using React and Node.js during his internship journey."
+  },
+  {
+    id: 4,
+    name: "Sanika Ravindra Pawar",
+    role: "Data Analytics Intern",
+    batch: "Winter 2025",
+    company: "Zaalima Development Pvt.Ltd",
+    videoUrl: "https://certificate-verification.zaalima.in/1115.mp4",
+    thumbnail: "https://certificate-verification.zaalima.in/1500.jpg",
+    duration: "1:12",
+    title: "Visualizing Success with Data",
+    description: "Sanika describes how she built interactive Power BI dashboards that simplified business reporting and decision-making."
+  },
+  {
+    id: 5,
+    name: "Chelsy Rajeshkumar Patel",
+    role: "UI/UX Design Intern",
+    batch: "Summer 2025",
+    company: "Zaalima Development Pvt.Ltd",
+    videoUrl: "https://certificate-verification.zaalima.in/1116.mp4",
+    thumbnail: "https://certificate-verification.zaalima.in/1500.jpg",
+    duration: "1:38",
+    title: "Designing for Real Impact",
+    description: "Chelsy shares how she improved user engagement by redesigning mobile interfaces based on real-time usability feedback."
+  },
+  {
+    id: 6,
+    name: "Anirban Halder",
+    role: "Data Science & Machine Learning Intern",
+    batch: "Spring 2025",
+    company: "Zaalima Development Pvt.Ltd",
+    videoUrl: "https://certificate-verification.zaalima.in/1117.mp4",
+    thumbnail: "https://certificate-verification.zaalima.in/1500.jpg",
+    duration: "1:58",
+    title: "Intelligence in Every Model",
+    description: "Anirban discusses developing and deploying predictive models that optimized business performance and customer targeting."
+  },
 ]
+
 
 const reviews: Review[] = [
   {
     id: 1,
-    name: "Sarah Johnson",
-    role: "Frontend Development Intern",
-    batch: "Summer 2024",
+    name: "Mohammed Aneez",
+    role: "Web Development Intern",
+    batch: "Summer 2025",
     rating: 5,
-    review: "This internship completely transformed my career trajectory. The mentorship was exceptional, and I worked on real projects that are now used by thousands of customers. The learning curve was steep but incredibly rewarding.",
-    avatar: "/professional-business-consultant-headshot.jpg",
-    company: "TechFlow Systems"
+    review: "It was worth the time being at Zaalima doing internship. Good training and guidance.",
+    avatar: "https://certificate-verification.zaalima.in/1030.jpg",
+    company: "Zaalima Development Pvt.Ltd"
   },
   {
     id: 2,
-    name: "Michael Chen",
-    role: "Data Science Intern",
-    batch: "Summer 2024",
-    rating: 5,
-    review: "An absolutely phenomenal experience that exceeded every expectation. I gained hands-on experience with cutting-edge ML algorithms and worked alongside brilliant minds. The skills I learned here are invaluable.",
-    avatar: "/professional-business-consultant-headshot.jpg",
-    company: "DataVision Corp"
+    name: "Yashash R",
+    role: "Python Development Intern",
+    batch: "Summer 2025",
+    rating: 4,
+    review: "My internship was an enriching experience that significantly enhanced my practical skills. I am grateful for the opportunity to work with such a cooperative and supportive team, which made the learning environment highly positive and impactful.",
+    avatar: "https://certificate-verification.zaalima.in/1030.jpg",
+    company: "Zaalima Development Pvt.Ltd"
   },
   {
     id: 3,
-    name: "Emily Rodriguez",
-    role: "ML Engineering Intern",
-    batch: "Spring 2024",
+    name: "Tushar Gupta",
+    role: "Data Science & Machine Learning Intern",
+    batch: "Spring 2025",
     rating: 5,
-    review: "This program is a game-changer for anyone serious about AI and machine learning. I deployed production models, learned industry best practices, and built solutions that make a real impact.",
-    avatar: "/professional-business-consultant-headshot.jpg",
-    company: "AI Solutions Inc"
-  }
+    review: "I complete my internship recently it was amazing experience.",
+    avatar: "https://certificate-verification.zaalima.in/1029.jpg",
+    company: "Zaalima Development Pvt.Ltd"
+  },
+  {
+    id: 4,
+    name: "Raushan ranjan",
+    role: "Data Analytics Intern",
+    batch: "Spring 2025",
+    rating: 5,
+    review: "Zaalima is good company, i have done internship in this company. the trainer is good in nature, they teach us very well , the clear every doubt.they are friendly in nature..",
+    avatar: "https://certificate-verification.zaalima.in/1030.jpg",
+    company: "Zaalima Development Pvt.Ltd"
+  },
+  {
+    id: 5,
+    name: "Rassmika",
+    role: "UI/UX Design Intern",
+    batch: "Spring 2025",
+    rating: 5,
+    review: "Very useful I gained more knowledge in this internship.",
+    avatar: "https://certificate-verification.zaalima.in/1029.jpg",
+    company: "Zaalima Development Pvt.Ltd"
+  },
 ]
 
 const InternHallOfFame: React.FC = () => {
@@ -325,7 +677,7 @@ const InternHallOfFame: React.FC = () => {
                           />
                         </div>
                       </div>
-                      
+
                       {/* Domain Badge - Bottom Left */}
                       <div className="absolute bottom-3 left-3">
                         <Badge className="bg-indigo-600 hover:bg-indigo-700 text-white border-0 px-3 py-1 text-xs font-semibold shadow-lg">
@@ -337,7 +689,7 @@ const InternHallOfFame: React.FC = () => {
 
                     {/* Name */}
                     <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{intern.name}</h3>
-                    
+
                     {/* Description */}
                     <p className="text-gray-600 dark:text-gray-400 text-sm mb-3 leading-relaxed line-clamp-2">
                       {intern.description}
@@ -476,9 +828,8 @@ const InternHallOfFame: React.FC = () => {
                 <button
                   key={index}
                   onClick={() => setCurrentVideo(index)}
-                  className={`h-2 rounded-full transition-all ${
-                    index === currentVideo ? "bg-indigo-600 w-8" : "bg-gray-300 dark:bg-gray-600 w-2"
-                  }`}
+                  className={`h-2 rounded-full transition-all ${index === currentVideo ? "bg-indigo-600 w-8" : "bg-gray-300 dark:bg-gray-600 w-2"
+                    }`}
                 />
               ))}
             </div>
@@ -539,9 +890,8 @@ const InternHallOfFame: React.FC = () => {
                 <button
                   key={index}
                   onClick={() => setCurrentReview(index)}
-                  className={`h-2 rounded-full transition-all ${
-                    index === currentReview ? "bg-indigo-600 w-8" : "bg-gray-300 dark:bg-gray-600 w-2"
-                  }`}
+                  className={`h-2 rounded-full transition-all ${index === currentReview ? "bg-indigo-600 w-8" : "bg-gray-300 dark:bg-gray-600 w-2"
+                    }`}
                 />
               ))}
             </div>
@@ -573,14 +923,17 @@ const InternHallOfFame: React.FC = () => {
               <p className="text-lg sm:text-xl text-white/90 mb-8 sm:mb-12 max-w-2xl mx-auto">
                 Be part of our Hall of Fame. Applications are now open for Summer 2025 internship program.
               </p>
-              
+
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10 sm:mb-12">
-                <Button size="lg" className="bg-white text-indigo-600 hover:bg-gray-100 px-8 py-6 text-lg font-bold shadow-xl w-full sm:w-auto">
-                  Apply Now
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
+                <Link to="https://docs.google.com/forms/d/e/1FAIpQLSfP3af9aBHT8hte8LSrz-32M7f32l1dz6iRnPFCP9clS6c1VA/viewform" className="w-full sm:w-auto">
+                  <Button size="lg" className="bg-white text-indigo-600 hover:bg-gray-100 px-8 py-6 text-lg font-bold shadow-xl w-full sm:w-auto">
+                    Apply Now
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </Link>
+
                 <Link to="/contact" className="w-full sm:w-auto">
-                  <Button variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white hover:text-indigo-600 px-8 py-6 text-lg font-bold w-full">
+                  <Button variant="outline" size="lg" className="border-2 border-white text-black hover:bg-white hover:text-indigo-600 px-8 py-6 text-lg font-bold w-full">
                     Learn More
                   </Button>
                 </Link>
@@ -588,9 +941,9 @@ const InternHallOfFame: React.FC = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 pt-8 border-t border-white/20">
                 {[
-                  { icon: Zap, title: "Application Deadline", value: "March 15, 2025" },
-                  { icon: Briefcase, title: "Program Duration", value: "12-16 Weeks" },
-                  { icon: Award, title: "Stipend", value: "$2K - $8K/month" }
+                  { icon: Zap, title: "Application Deadline", value: "October 05, 2025" },
+                  { icon: Briefcase, title: "Program Duration", value: "08-12 Weeks" },
+                  { icon: Award, title: "Stipend", value: "$1K - $6K/month" }
                 ].map((item, index) => (
                   <div key={index} className="text-center">
                     <div className="inline-flex items-center justify-center w-12 h-12 bg-white/20 backdrop-blur-sm rounded-2xl mb-3">

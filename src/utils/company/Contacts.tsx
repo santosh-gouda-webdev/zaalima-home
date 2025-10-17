@@ -209,7 +209,7 @@ const Contact: React.FC<ContactProps> = ({isOpen, setIsOpen}) => {
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        placeholder="john@company.com"
+                        placeholder="john@zaalima.in"
                         className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                       />
                     </div>
@@ -240,7 +240,7 @@ const Contact: React.FC<ContactProps> = ({isOpen, setIsOpen}) => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        placeholder="+91 8277350909"
+                        placeholder="+91 8277035909"
                         className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                       />
                     </div>

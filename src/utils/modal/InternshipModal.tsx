@@ -179,6 +179,7 @@ export function InternshipModal({ isOpen, onClose }: InternshipModalProps) {
                   {[
                     'Live client projects',
                     'Industry expert training',
+                     'Live Training',
                     'Certificate & LOR',
                     'Placement assistance'
                   ].map((benefit, idx) => (
